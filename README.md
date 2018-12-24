@@ -1,4 +1,4 @@
-# anu
+# Upgrad
 
 ## Project setup
 ```

@@ -8,7 +8,13 @@
       @click="toggle"
       @keydown.space.prevent="toggle"
     ></span>
-    <modal-input :show="modalOpen" :sendName="name" :active2Inactive="ain" @close="toggled" @open= "opened"></modal-input>
+    <modal-input
+      :show="modalOpen"
+      :sendName="name"
+      :active2Inactive="ain"
+      @close="toggled"
+      @open="opened"
+    ></modal-input>
   </section>
 </template>
 
@@ -16,7 +22,7 @@
 import modalInput from "./modalInput.vue";
 export default {
   name: "ToggleInput",
-  props: ["fullName"],
+  props: ["fullName", "status"],
   data() {
     return {
       value: false,
@@ -42,8 +48,13 @@ export default {
         this.value = !this.value;
       }
     },
-    opened(){
+    opened() {
       this.modalOpen = false;
+    }
+  },
+  mounted() {
+    if (this.status === "active") {
+      this.value = !this.value;
     }
   }
 };

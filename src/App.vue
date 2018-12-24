@@ -21,7 +21,6 @@
             placeholder="Enter your search"
             aria-describedby="button-addon2"
             v-model="search"
-            
           >
           <div class="input-group-append">
             <button
@@ -54,7 +53,7 @@
               <td>{{user.email}}</td>
               <td>{{user.phone}}</td>
               <td>
-                <toggle-input :fullName="user.firstName"></toggle-input>
+                <toggle-input :fullName="user.firstName" :status="user.status"></toggle-input>
               </td>
             </tr>
           </tbody>
@@ -91,13 +90,16 @@ export default {
       firstName: "Maneesha",
       lastName: "venigalla",
       email: "venigallamaneesha24@gmail.com",
-      phone: "9398231139"
+      phone: "9398231139",
+      status: "active"
     });
   },
   methods: {
     onSubmit() {
-      this.show = !this.show;
       document.getElementById("main").style.opacity = "0.3";
+      this.show = !this.show;
+
+      document.getElementById("main").style.opacity = "1";
     },
     onUserDataSubmit(value) {
       this.users.push({
@@ -108,12 +110,12 @@ export default {
         phone: value.phone
       });
       this.show = false;
-            document.getElementById("main").style.opacity = "1";
+      document.getElementById("main").style.opacity = "1";
     },
-    closeModalOnClick(value){
-     document.getElementById("main").style.opacity = "1";
-     this.show = value
-
+    closeModalOnClick() {
+      document.getElementById("main").style.opacity = "1";
+      this.show = !this.show;
+      document.getElementById("main").style.opacity = "1";
     }
   },
   computed: {
@@ -138,9 +140,8 @@ export default {
   top: 10%;
   left: 30%;
   z-index: 10;
-   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
-
 
 table {
   width: 100%;
