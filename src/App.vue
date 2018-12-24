@@ -61,7 +61,7 @@
         </table>
       </section>
     </div>
-    <addUser v-show="show" id="addModal" @userData="onUserDataSubmit"/>
+    <addUser v-show="show" id="addModal" @userData="onUserDataSubmit" @close="closeModalOnClick"/>
   </div>
 </template>
 
@@ -108,11 +108,13 @@ export default {
         phone: value.phone
       });
       this.show = false;
-      
-      this.closeModal = value.modalClose;
-      console.log(this.closeModal);
-      document.getElementById("main").style.opacity = "1";
+            document.getElementById("main").style.opacity = "1";
     },
+    closeModalOnClick(value){
+     document.getElementById("main").style.opacity = "1";
+     this.show = value
+
+    }
   },
   computed: {
     filteredUsers() {
@@ -136,18 +138,9 @@ export default {
   top: 10%;
   left: 30%;
   z-index: 10;
-  border: 2px solid #777;
-  box-shadow: 0px 0px 1px rgba(102, 102, 102, 0.568);
+   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
-#activeModal {
-  position: absolute;
-  top: 10%;
-  left: 30%;
-  z-index: 10;
-  border: 2px solid #777;
-  box-shadow: 0px 0px 1px rgba(102, 102, 102, 0.568);
-}
 
 table {
   width: 100%;

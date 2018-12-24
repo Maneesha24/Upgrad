@@ -96,7 +96,7 @@
           </select>
         </div>
         <div class="text-right">
-          <button type="button" class="btn btn-secondary" >Close</button>
+          <button type="button" class="btn btn-secondary" @click="dismiss">Close</button>
           <button class="btn btn-primary ml-3">Save user</button>
         </div>
       </form>
@@ -115,28 +115,28 @@ export default {
         lastName: "",
         email: "",
         phone: "",
-        status: "active",
-        modalClose: false
+        status: "active"
       }
     };
   },
   methods: {
     handleSubmit(event) {
       event.preventDefault();
-      this.$emit("userData", this.user, this.modalClose);
+      this.$emit("userData", this.user);
       this.user.id = "";
       this.user.firstName = "";
       this.user.lastName = "";
       this.user.email = "";
       this.user.phone = "";
+    },
+    dismiss() {
+      document.getElementById("addModal").style.display = "none";
+      this.$emit("close", true);
     }
-  },
-  closedModal() {
-    document.getElementById("addModal").style.display = "none";
   }
 };
 </script>
 
-<style>
+<style scoped>
 </style>
 

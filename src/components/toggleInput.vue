@@ -8,7 +8,7 @@
       @click="toggle"
       @keydown.space.prevent="toggle"
     ></span>
-    <modal-input :show="modalOpen" :sendName="name" :active2Inactive="ain" @close="toggled"></modal-input>
+    <modal-input :show="modalOpen" :sendName="name" :active2Inactive="ain" @close="toggled" @open= "opened"></modal-input>
   </section>
 </template>
 
@@ -41,6 +41,9 @@ export default {
         this.ain = !this.ain;
         this.value = !this.value;
       }
+    },
+    opened(){
+      this.modalOpen = false;
     }
   }
 };

@@ -1,12 +1,15 @@
 <template>
   <div class="modal-backdrop" v-show="show">
     <div class="modalOpen card">
-      <p class="text-center text-2xl font-bold mb-4">Are you sure you want to change the status for
+      <p class="text-center text-2xl font-bold mb-4">
+        Are you sure you want to change the status for
         <strong>{{showName}}</strong>
-        from {{activeInactive}} ?
+        from
+        <span>{{activeInactive}}</span> ?
       </p>
 
       <div class="text-center">
+                <button @click="close" class="btn btn-secondary ml-4">Close</button>
         <button @click="dismiss" type="button" class="btn btn-primary ml-4">Are you Sure?</button>
       </div>
     </div>
@@ -20,6 +23,9 @@ export default {
   methods: {
     dismiss() {
       this.$emit("close", true);
+    },
+    close(){
+      this.$emit("open", true);
     }
   },
   updated() {
@@ -60,10 +66,7 @@ export default {
   background-color: #fff;
   border-radius: 0.25rem;
   padding: 2rem;
-  -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
-    0 5px 15px 0 rgba(0, 0, 0, 0.08);
-  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
-    0 5px 15px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .btn-blue {
@@ -76,5 +79,9 @@ p {
 
 strong {
   color: red;
+}
+
+span {
+  color: blue;
 }
 </style>
