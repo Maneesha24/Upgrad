@@ -77,7 +77,7 @@
           <input
             type="text"
             placeholder="Enter mobile number"
-            name="number"
+            name="tel"
             class="form-control"
             v-model="user.phone"
             required
@@ -91,7 +91,7 @@
             </span>
           </div>
           <select class="custom-select" v-model="user.status" required>
-            <option selected value="active">Active</option>
+            <option value="active">Active</option>
             <option value="inactive">Inactive</option>
           </select>
         </div>

@@ -52,9 +52,10 @@ export default {
       this.modalOpen = false;
     }
   },
-  mounted() {
+  created() {
     if (this.status === "active") {
       this.value = !this.value;
+      this.ain = !this.ain;
     }
   }
 };

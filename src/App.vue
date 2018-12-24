@@ -84,7 +84,7 @@ export default {
       closeModal: ""
     };
   },
-  created() {
+  mounted() {
     this.users.push({
       id: "1",
       firstName: "Maneesha",
@@ -92,14 +92,19 @@ export default {
       email: "venigallamaneesha24@gmail.com",
       phone: "9398231139",
       status: "active"
+    },{
+      id: "2",
+      firstName: "John",
+      lastName: "Doe",
+      email: "john@doejohn.com",
+      phone:"9393993933",
+      status:"inactive"
     });
   },
   methods: {
     onSubmit() {
-      document.getElementById("main").style.opacity = "0.3";
       this.show = !this.show;
-
-      document.getElementById("main").style.opacity = "1";
+      document.getElementById("main").style.opacity = "0.3";
     },
     onUserDataSubmit(value) {
       this.users.push({
@@ -113,7 +118,6 @@ export default {
       document.getElementById("main").style.opacity = "1";
     },
     closeModalOnClick() {
-      document.getElementById("main").style.opacity = "1";
       this.show = !this.show;
       document.getElementById("main").style.opacity = "1";
     }

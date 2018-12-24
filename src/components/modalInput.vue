@@ -10,7 +10,7 @@
 
       <div class="text-center">
                 <button @click="close" class="btn btn-secondary ml-4">Close</button>
-        <button @click="dismiss" type="button" class="btn btn-primary ml-4">Are you Sure?</button>
+        <button @click="dismiss" type="button" class="btn btn-primary ml-4">Change status</button>
       </div>
     </div>
   </div>
