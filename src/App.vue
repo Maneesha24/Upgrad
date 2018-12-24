@@ -21,6 +21,7 @@
             placeholder="Enter your search"
             aria-describedby="button-addon2"
             v-model="search"
+            
           >
           <div class="input-group-append">
             <button
@@ -52,27 +53,28 @@
               <td>{{user.lastName}}</td>
               <td>{{user.email}}</td>
               <td>{{user.phone}}</td>
-              <td><input type="checkbox" @click="showActiveModalFunc"/></td>
+              <td>
+                <toggle-input :fullName="user.firstName"></toggle-input>
+              </td>
             </tr>
           </tbody>
         </table>
       </section>
     </div>
     <addUser v-show="show" id="addModal" @userData="onUserDataSubmit"/>
-    <activeUser v-show="showActiveModal" id="activeModal" />
   </div>
 </template>
 
 
 <script>
 import addUser from "./components/addUser.vue";
-import activeUser from "./components/activeUser.vue";
+import toggleInput from "./components/toggleInput.vue";
 
 export default {
   name: "App",
   components: {
     addUser,
-    activeUser
+    toggleInput
   },
   data() {
     return {
@@ -80,18 +82,17 @@ export default {
       showActiveModal: false,
       users: [],
       search: "",
-      closedModal: ""
+      closeModal: ""
     };
   },
-  created(){
+  created() {
     this.users.push({
-      id: '1',
-      firstName: 'Maneesha',
-      lastName: 'venigalla',
-      email: 'venigallamaneesha24@gmail.com',
-      phone:'9398231139'
-    })
-
+      id: "1",
+      firstName: "Maneesha",
+      lastName: "venigalla",
+      email: "venigallamaneesha24@gmail.com",
+      phone: "9398231139"
+    });
   },
   methods: {
     onSubmit() {
@@ -107,17 +108,11 @@ export default {
         phone: value.phone
       });
       this.show = false;
+      
+      this.closeModal = value.modalClose;
+      console.log(this.closeModal);
       document.getElementById("main").style.opacity = "1";
     },
-    onCloseModal(values){
-      this.closedModal = values;
-      console.log(values)
-
-    },
-    showActiveModalFunc(){
-      this.showActiveModal = !this.showActiveModal;
-       document.getElementById("main").style.opacity = "0.3";
-    }
   },
   computed: {
     filteredUsers() {
@@ -130,8 +125,8 @@ export default {
           user.phone.indexOf(this.search.toLowerCase()) > -1
         );
       });
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -145,18 +140,14 @@ export default {
   box-shadow: 0px 0px 1px rgba(102, 102, 102, 0.568);
 }
 
-
-#activeModal{
-   position: absolute;
+#activeModal {
+  position: absolute;
   top: 10%;
   left: 30%;
   z-index: 10;
   border: 2px solid #777;
-    box-shadow: 0px 0px 1px rgba(102, 102, 102, 0.568);
-
+  box-shadow: 0px 0px 1px rgba(102, 102, 102, 0.568);
 }
-
-
 
 table {
   width: 100%;
